@@ -1,0 +1,17 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block body %}
+    
+<h1>Matching Pages</h1>
+
+<ul>
+    {% for entry in results %}
+        <li> <h3> <a href="{% url 'entry' title=entry %}" > {{ entry }} </a> </h3> </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
