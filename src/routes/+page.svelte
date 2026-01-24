@@ -2,6 +2,8 @@
   import { Badge } from "$lib/components/ui/badge";
 </script>
 
+<svelte:head><title>Monish Sharma's home page</title></svelte:head>
+
 <main class="min-h-screen bg-background">
   <!-- Hero Section with Colorful Background -->
   <div class="bg-gradient-to-br from-primary/10 via-background to-secondary/10">
