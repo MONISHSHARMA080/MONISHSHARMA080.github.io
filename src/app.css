@@ -3,88 +3,52 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: hsl(45 100% 98%);
-  --foreground: hsl(230 25% 15%);
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(230 25% 15%);
-  --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(230 25% 15%);
-  --primary: hsl(200 95% 45%);
-  --primary-foreground: hsl(0 0% 100%);
-  --secondary: hsl(165 75% 42%);
-  --secondary-foreground: hsl(0 0% 100%);
-  --muted: hsl(45 100% 95%);
-  --muted-foreground: hsl(230 10% 45%);
-  --accent: hsl(25 100% 60%);
-  --accent-foreground: hsl(0 0% 100%);
-  --destructive: hsl(0 84.2% 60.2%);
-  --destructive-foreground: hsl(0 0% 98%);
-  --border: hsl(230 15% 85%);
-  --input: hsl(230 15% 90%);
-  --ring: hsl(200 95% 45%);
-  --chart-1: hsl(200 95% 45%);
-  --chart-2: hsl(165 75% 42%);
-  --chart-3: hsl(25 100% 60%);
-  --chart-4: hsl(280 65% 60%);
-  --chart-5: hsl(340 75% 55%);
-  --radius: 0.875rem;
-  --sidebar-background: hsl(0 0% 98%);
-  --sidebar-foreground: hsl(230 25% 15%);
-  --sidebar-primary: hsl(200 95% 45%);
-  --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(45 100% 95%);
-  --sidebar-accent-foreground: hsl(230 25% 15%);
-  --sidebar-border: hsl(230 15% 85%);
-  --sidebar-ring: hsl(200 95% 45%);
-}
-
-.dark {
-  --background: hsl(220 20% 10%);
-  --foreground: hsl(0 0% 98%);
-  --card: hsl(220 20% 12%);
-  --card-foreground: hsl(0 0% 98%);
-  --popover: hsl(220 20% 10%);
-  --popover-foreground: hsl(0 0% 98%);
-  --primary: hsl(220 80% 60%);
-  --primary-foreground: hsl(0 0% 100%);
-  --secondary: hsl(168 70% 50%);
-  --secondary-foreground: hsl(0 0% 100%);
-  --muted: hsl(220 15% 20%);
-  --muted-foreground: hsl(220 10% 65%);
-  --accent: hsl(45 95% 65%);
-  --accent-foreground: hsl(220 20% 10%);
-  --destructive: hsl(0 62.8% 30.6%);
-  --destructive-foreground: hsl(0 0% 98%);
-  --border: hsl(220 15% 20%);
-  --input: hsl(220 15% 20%);
-  --ring: hsl(220 80% 60%);
-  --chart-1: hsl(220 80% 60%);
-  --chart-2: hsl(168 70% 50%);
-  --chart-3: hsl(45 95% 65%);
-  --chart-4: hsl(280 65% 60%);
-  --chart-5: hsl(340 75% 55%);
-  --sidebar-background: hsl(220 20% 10%);
-  --sidebar-foreground: hsl(0 0% 98%);
-  --sidebar-primary: hsl(220 80% 60%);
-  --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(220 15% 20%);
-  --sidebar-accent-foreground: hsl(0 0% 98%);
-  --sidebar-border: hsl(220 15% 20%);
-  --sidebar-ring: hsl(220 80% 60%);
+  --background: #ffffff;
+  --foreground: #1d1d1f;
+  --surface: #f5f5f7;
+  --surface-elevated: #fbfbfd;
+  --card: #ffffff;
+  --card-foreground: #1d1d1f;
+  --popover: #ffffff;
+  --popover-foreground: #1d1d1f;
+  --primary: #2553e8;
+  --primary-hover: #1b43c9;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f7;
+  --secondary-foreground: #1d1d1f;
+  --muted: #f5f5f7;
+  --muted-foreground: #6e6e73;
+  --accent: #c2d2ff;
+  --accent-foreground: #1e2b5c;
+  --clock-surface: #f8f8fe;
+  --clock-pill: #c2d2ff;
+  --clock-pill-inactive: #eeeef7;
+  --clock-lavender: #dfc4f7;
+  --clock-ink: #1e2b5c;
+  --destructive: #d92d20;
+  --destructive-foreground: #ffffff;
+  --border: #e5e5ea;
+  --input: #e5e5ea;
+  --ring: #2553e8;
+  --radius: 1rem;
 }
 
 @theme inline {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -96,26 +60,46 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.phone-shadow {
+  box-shadow:
+    0 32px 72px -18px rgba(17, 17, 20, 0.22),
+    0 12px 28px -10px rgba(37, 83, 232, 0.1),
+    0 0 0 1px rgba(17, 17, 20, 0.08);
+}
+
+@layer components {
+  .apple-card {
+    border: 1px solid rgba(29, 29, 31, 0.06);
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+  }
+
+  .apple-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 44px -24px rgba(17, 17, 20, 0.16);
   }
 }

@@ -59,8 +59,29 @@ word-break: break-word !important;
 
 </script>
 
-<div>
-  {@html privacyPolicyHTML}
+<svelte:head>
+  <title>Privacy Policy — Repeat Alarm: Clock-It</title>
+  <meta
+    name="description"
+    content="Privacy Policy for Repeat Alarm: Clock-It (Multiple Alarm Clock) by Cool Apps .org."
+  />
+  <link rel="canonical" href="https://monishsharma080.github.io/multipleAlarmPrivacyPolicy" />
+</svelte:head>
+
+<div class="min-h-screen bg-white text-foreground">
+  <header class="border-b border-black/[0.06] bg-white/80 backdrop-blur-xl">
+    <div class="mx-auto flex h-14 max-w-4xl items-center justify-between px-5 sm:px-8">
+      <a href="/" class="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground">
+        <span aria-hidden="true">←</span>
+        <span>Back to Monish Sharma</span>
+      </a>
+      <span class="text-xs font-medium text-muted-foreground">Clock-It Privacy Policy</span>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-4xl px-5 py-12 sm:px-8">
+    {@html privacyPolicyHTML}
+  </main>
 </div>
 
 
