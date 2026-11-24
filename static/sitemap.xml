@@ -7,6 +7,42 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://monishsharma080.github.io/guides</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://monishsharma080.github.io/alternatives/alarmy</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://monishsharma080.github.io/alternatives/repeat-alarm</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://monishsharma080.github.io/guides/set-multiple-alarms-android</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://monishsharma080.github.io/guides/alarm-for-heavy-sleepers-android</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://monishsharma080.github.io/tools/interval-alarm-calculator</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://monishsharma080.github.io/multipleAlarmPrivacyPolicy</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>yearly</changefreq>

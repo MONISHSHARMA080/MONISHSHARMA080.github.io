@@ -1,29 +1,29 @@
 <script lang="ts">
   import ClockItPhoneHero from '$lib/components/ClockItPhoneHero.svelte';
   import HowItWorksShowcase from '$lib/components/HowItWorksShowcase.svelte';
+  import SiteHeader from '$lib/components/SiteHeader.svelte';
+  import SiteFooter from '$lib/components/SiteFooter.svelte';
+  import {
+    GITHUB_PROFILE_URL,
+    PLAY_STORE_BASE_URL,
+    SEO_PAGES,
+    SITE_URL,
+    ZIG_REPO_URL,
+    clockItSoftwareSchema,
+    jsonLdScript,
+    playStoreUrl
+  } from '$lib/seo';
 
-  const SITE_URL = 'https://monishsharma080.github.io';
-  const PLAY_STORE_BASE_URL =
-    'https://play.google.com/store/apps/details?id=com.coolApps.MultipleAlarmClock';
-  const GITHUB_PROFILE_URL = 'https://github.com/MONISHSHARMA080';
-  const ZIG_REPO_URL = 'https://github.com/monishsharma080/zig-concurrency';
-
-  /**
-   * Builds a Google Play Store campaign URL using the official `referrer` parameter
-   * so installs show up under Google Play Console -> Store performance / UTM campaigns.
-   */
-  function playStoreUrl(content: string): string {
-    const utmParams = new URLSearchParams({
-      utm_source: 'personal_website',
-      utm_medium: 'website',
-      utm_campaign: 'clock_it_landing',
-      utm_content: content
-    }).toString();
-    return `${PLAY_STORE_BASE_URL}&referrer=${encodeURIComponent(utmParams)}`;
-  }
-
-  let mobileMenuOpen = $state(false);
   let openFaq = $state<number | null>(0);
+
+  const featuredGuides = SEO_PAGES.filter((page) =>
+    [
+      '/alternatives/alarmy',
+      '/alternatives/repeat-alarm',
+      '/guides/set-multiple-alarms-android',
+      '/tools/interval-alarm-calculator'
+    ].includes(page.href)
+  );
 
   const routines = [
     {
@@ -63,32 +63,10 @@
     }
   ];
 
-  const structuredData = JSON.stringify({
+  const jsonLd = jsonLdScript({
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': 'SoftwareApplication',
-        name: 'Repeat Alarm: Clock-It',
-        alternateName: 'Multiple Alarm Clock',
-        operatingSystem: 'Android',
-        applicationCategory: 'UtilitiesApplication',
-        description:
-          'Create a full sequence of repeating interval alarms from one setup. Pick a start time, end time, and repeat interval (1, 2, 5, 10, 15, or 30 minutes) for heavy sleepers, ADHD routines, study sprints, and medication reminders.',
-        url: SITE_URL,
-        downloadUrl: PLAY_STORE_BASE_URL,
-        installUrl: PLAY_STORE_BASE_URL,
-        image: `${SITE_URL}/clock-it-icon.png`,
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'USD'
-        },
-        author: {
-          '@type': 'Person',
-          name: 'Monish Sharma',
-          url: SITE_URL
-        }
-      },
+      clockItSoftwareSchema(),
       {
         '@type': 'Person',
         name: 'Monish Sharma',
@@ -110,8 +88,6 @@
       }
     ]
   });
-
-  const jsonLdScript = `<script type="application/ld+json">${structuredData}<\/script>`;
 </script>
 
 <svelte:head>
@@ -143,118 +119,11 @@
     content="Pick a start time, end time, and interval. Clock-It generates every repeating alarm in seconds."
   />
   <meta name="twitter:image" content={`${SITE_URL}/og-card.png`} />
-  {@html jsonLdScript}
+  {@html jsonLd}
 </svelte:head>
 
 <div class="min-h-screen overflow-x-clip bg-background text-foreground selection:bg-[#c2d2ff] selection:text-[#182246]">
-  <!-- Minimal Sticky Nav (Apple + Amy Food Journal) -->
-  <header class="sticky top-0 z-50 border-b border-black/[0.06] bg-white/85 backdrop-blur-xl">
-    <nav
-      class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-8"
-      aria-label="Primary"
-    >
-      <a
-        href="#top"
-        class="flex items-center gap-2.5 text-[15px] font-semibold tracking-tight text-foreground"
-      >
-        <img
-          src="/clock-it-icon.png"
-          alt="Clock-It"
-          class="h-7 w-7 rounded-[7px] ring-1 ring-black/10"
-          width="28"
-          height="28"
-        />
-        <span>Monish Sharma</span>
-      </a>
-
-      <div class="hidden items-center gap-7 text-[14px] font-medium text-muted-foreground md:flex">
-        <a href="#clock-it" class="transition-colors hover:text-foreground">Clock-It</a>
-        <a href="#how-it-works" class="transition-colors hover:text-foreground">How it works</a>
-        <a href="#features" class="transition-colors hover:text-foreground">Features</a>
-        <a href="#projects" class="transition-colors hover:text-foreground">Projects</a>
-        <a href="#about" class="transition-colors hover:text-foreground">About</a>
-      </div>
-
-      <div class="flex items-center gap-2">
-        <a
-          href={playStoreUrl('nav_cta')}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex h-8 items-center justify-center rounded-full bg-primary px-3.5 text-[12px] font-semibold text-primary-foreground transition hover:bg-primary-hover md:h-9 md:px-4 md:text-[13px]"
-        >
-          Get Clock-It
-        </a>
-
-        <button
-          type="button"
-          onclick={() => (mobileMenuOpen = !mobileMenuOpen)}
-          aria-expanded={mobileMenuOpen}
-          aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-          class="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-foreground transition hover:bg-surface md:hidden"
-        >
-          {#if mobileMenuOpen}
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-              <path d="M6 6l12 12M18 6 6 18" />
-            </svg>
-          {:else}
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-              <path d="M4 8h16M4 16h16" />
-            </svg>
-          {/if}
-        </button>
-      </div>
-    </nav>
-
-    {#if mobileMenuOpen}
-      <div class="border-t border-black/[0.06] bg-white px-5 pb-5 pt-3 md:hidden">
-        <div class="flex flex-col space-y-1 text-[15px] font-medium">
-          <a
-            href="#clock-it"
-            onclick={() => (mobileMenuOpen = false)}
-            class="rounded-xl px-3 py-2.5 text-foreground hover:bg-surface"
-          >
-            Clock-It
-          </a>
-          <a
-            href="#how-it-works"
-            onclick={() => (mobileMenuOpen = false)}
-            class="rounded-xl px-3 py-2.5 text-foreground hover:bg-surface"
-          >
-            How it works
-          </a>
-          <a
-            href="#features"
-            onclick={() => (mobileMenuOpen = false)}
-            class="rounded-xl px-3 py-2.5 text-foreground hover:bg-surface"
-          >
-            Features
-          </a>
-          <a
-            href="#projects"
-            onclick={() => (mobileMenuOpen = false)}
-            class="rounded-xl px-3 py-2.5 text-foreground hover:bg-surface"
-          >
-            Projects
-          </a>
-          <a
-            href="#about"
-            onclick={() => (mobileMenuOpen = false)}
-            class="rounded-xl px-3 py-2.5 text-foreground hover:bg-surface"
-          >
-            About
-          </a>
-          <a
-            href={playStoreUrl('mobile_menu_cta')}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mt-2 inline-flex h-11 items-center justify-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground"
-          >
-            Download on Google Play
-          </a>
-        </div>
-      </div>
-    {/if}
-  </header>
+  <SiteHeader activePath="/" utmCampaign="clock_it_landing" />
 
   <main id="top">
     <!-- Hero: Apple Mac mini minimalism + Amy Food Journal focus & clear action button -->
@@ -626,6 +495,53 @@
       </div>
     </section>
 
+    <!-- Section 5b: Comparisons & Guides -->
+    <section id="guides" class="scroll-mt-20 border-t border-border/80 bg-surface/50 py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8">
+        <div class="mb-10 flex flex-col justify-between gap-3 sm:mb-12 sm:flex-row sm:items-end">
+          <div>
+            <p class="mb-2.5 text-sm font-semibold tracking-tight text-primary">
+              Comparisons &amp; guides
+            </p>
+            <h2 class="text-3xl font-bold tracking-[-0.03em] text-foreground sm:text-4xl">
+              Compare alternatives &amp; plan your schedule.
+            </h2>
+          </div>
+          <a
+            href="/guides"
+            class="inline-flex items-center gap-1 text-sm font-semibold text-primary transition hover:text-primary-hover"
+          >
+            <span>View all guides</span>
+            <span aria-hidden="true">›</span>
+          </a>
+        </div>
+
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {#each featuredGuides as item}
+            <a
+              href={item.href}
+              class="apple-card flex flex-col justify-between rounded-[28px] bg-white p-6"
+            >
+              <div>
+                <span class="text-[11px] font-semibold uppercase tracking-wider text-primary">
+                  {item.category}
+                </span>
+                <h3 class="mt-2 text-lg font-bold tracking-tight text-foreground">
+                  {item.shortTitle}
+                </h3>
+                <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {item.description}
+                </p>
+              </div>
+              <span class="mt-5 inline-flex items-center gap-1 text-xs font-semibold text-primary">
+                Open <span aria-hidden="true">›</span>
+              </span>
+            </a>
+          {/each}
+        </div>
+      </div>
+    </section>
+
     <!-- Section 6: Founder / Personal Note (inspired by Amy's "Hi, I'm Chris") -->
     <section id="about" class="scroll-mt-20 border-t border-border/80 py-16 sm:py-24">
       <div class="mx-auto max-w-3xl px-5 text-center sm:px-8">
@@ -699,31 +615,5 @@
     </section>
   </main>
 
-  <!-- Minimal Footer -->
-  <footer class="border-t border-border/80 bg-white">
-    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 text-xs text-muted-foreground sm:flex-row sm:px-8">
-      <p>© {new Date().getFullYear()} Monish Sharma</p>
-      <div class="flex flex-wrap items-center justify-center gap-6">
-        <a
-          href={playStoreUrl('footer_link')}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="transition hover:text-foreground"
-        >
-          Clock-It on Google Play
-        </a>
-        <a
-          href={GITHUB_PROFILE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="transition hover:text-foreground"
-        >
-          GitHub
-        </a>
-        <a href="/multipleAlarmPrivacyPolicy" class="transition hover:text-foreground">
-          Privacy Policy
-        </a>
-      </div>
-    </div>
-  </footer>
+  <SiteFooter utmCampaign="clock_it_landing" />
 </div>
